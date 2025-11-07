@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Events - Wedding Tents & Decoration Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #c41e3a;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #c41e3a;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #c41e3a 0%, #d4af37 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=1600') center/cover;
+            opacity: 0.3;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.3s backwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: #d4af37;
+            color: #333;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .cta-button:hover {
+            background: #f4d03f;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 5%;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #c41e3a;
+            margin-bottom: 3rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(196,30,58,0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #c41e3a;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 5%;
+            background: white;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            height: 300px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(196,30,58,0.9));
+            padding: 2rem;
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 5%;
+            background: linear-gradient(135deg, #c41e3a 0%, #d4af37 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 2rem auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            padding: 1rem 2rem;
+            background: #d4af37;
+            color: #333;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .contact-form button:hover {
+            background: #f4d03f;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            background: #8b0000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">💒 Dream Events</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Services</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Your Dream Wedding Awaits</h1>
+            <p>Elegant tent setups, luxury quilts, and complete wedding decoration services. We transform venues into magical celebrations.</p>
+            <a href="#contact" class="cta-button">Get Free Quote</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 class="section-title">Our Wedding Services</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⛺</div>
+                <h3>Wedding Tents</h3>
+                <p>Elegant and spacious tents for outdoor weddings, receptions, and ceremonies. Available in various sizes and luxury styles.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛋️</div>
+                <h3>Premium Quilts</h3>
+                <p>Luxurious quilts and seating arrangements for guest comfort. Beautiful fabrics in traditional and modern designs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎊</div>
+                <h3>Complete Decoration</h3>
+                <p>Full wedding decoration setup including draping, floral arrangements, and theme-based designs for every celebration.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💡</div>
+                <h3>Lighting Design</h3>
+                <p>Stunning lighting solutions including fairy lights, chandeliers, uplighting, and custom illumination designs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🌸</div>
+                <h3>Floral Arrangements</h3>
+                <p>Fresh and artificial floral decor, mandap decoration, stage setups, and entrance designs that wow your guests.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎭</div>
+                <h3>Theme Setup</h3>
+                <p>Customized themes from traditional to contemporary. Royal, vintage, rustic, or modern - we bring your vision to life.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <h2 class="section-title">Our Wedding Portfolio</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800" alt="Wedding tent setup">
+                <div class="gallery-overlay">
+                    <h3>Elegant Tent Setups</h3>
+                    <p>Spacious & Beautiful</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?w=800" alt="Wedding decoration">
+                <div class="gallery-overlay">
+                    <h3>Stunning Decorations</h3>
+                    <p>Every Detail Matters</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=800" alt="Floral arrangements">
+                <div class="gallery-overlay">
+                    <h3>Floral Arrangements</h3>
+                    <p>Fresh & Vibrant</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800" alt="Lighting setup">
+                <div class="gallery-overlay">
+                    <h3>Lighting Magic</h3>
+                    <p>Create the Ambiance</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1525258948433-8e97eca0d6c8?w=800" alt="Seating arrangement">
+                <div class="gallery-overlay">
+                    <h3>Luxury Seating</h3>
+                    <p>Comfort & Style</p>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800" alt="Complete setup">
+                <div class="gallery-overlay">
+                    <h3>Complete Setups</h3>
+                    <p>Turnkey Solutions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">Let's Create Your Perfect Wedding</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Get a free quote for tents, quilts, and complete decoration setup. We handle everything!</p>
+        <form class="contact-form" onsubmit="return handleSubmit(event)">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <input type="date" placeholder="Wedding Date">
+            <textarea rows="5" placeholder="Tell us about your wedding plans, guest count, decoration preferences, and any special requirements..." required></textarea>
+            <button type="submit">Request Free Quote</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dream Events. All rights reserved. | Making Your Wedding Dreams Come True 💕</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        });
+
+        // Form submission
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('Thank you for your inquiry! Our wedding planning team will contact you within 24 hours with a detailed quote. 💕');
+            e.target.reset();
+            return false;
+        }
+
+        // Add scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .gallery-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
